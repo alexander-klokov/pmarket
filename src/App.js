@@ -1,30 +1,22 @@
 import React from 'react'
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link
-} from 'react-router-dom'
+import {Switch, Route} from 'react-router-dom'
 
-import {PageHome} from './containers/home/Home'
-import {PageAbout} from './containers/about/About'
+import {Photos} from './pages/Photos'
+import {Cart} from './pages/Cart'
+import {Header} from './components/Header'
 
 export const App = () => (
-  <Router>
-    <nav>
-      <Link to="/">Home</Link>
-      <Link to="/about">About</Link>
-    </nav>
-
+  <div>
+    <Header />
     <Switch>
-      <Route path="/about">
-        <PageAbout />
+      <Route exact path="/">
+        <Photos />
       </Route>
 
-      <Route path="/">
-        <PageHome />
+      <Route path="/cart">
+        <Cart />
       </Route>
 
     </Switch>
-  </Router>
+  </div>
 )
