@@ -5,6 +5,8 @@ import {Context} from "../Context"
 
 import {CartItem} from "../components/CartItem"
 
+export const UNIT_PRICE = 1 // usd
+
 export const Cart = () => {
 
     const {allPhotos, photoIdsInCart} = useContext(Context)
@@ -16,11 +18,14 @@ export const Cart = () => {
         <CartItem key={item.id} item={item} />
     ))
     
+    const totalCost = (photosInCart.length * UNIT_PRICE)
+      .toLocaleString("en-US", {style: "currency", currency: "USD"})
+
     return (
         <main className="cart-page">
             <h1>Check out</h1>
             {cartItemElements}
-            <p className="total-cost">Total: </p>
+            <p className="total-cost">Total: {totalCost}</p>
             <div className="order-button">
                 <button>Place Order</button>
             </div>
