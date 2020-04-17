@@ -9,7 +9,7 @@ const Context = React.createContext()
 
 function ContextProvider (props) {
   const [allPhotos, setAllPhotos] = useState([])
-  const [photosInCart, setPhotosInCart] = useState([])
+  const [photoIdsInCart, setPhotoIdsInCart] = useState([])
 
  
   useEffect(() => {
@@ -29,24 +29,21 @@ function ContextProvider (props) {
   }
 
   const toggleInCart = id => {
-    // first, check if the image selected is in the cart
-    const isInList = photosInCart.some(photo => photo.id === id)
+    // first, check if the image id selected is in the cart
+    const isInList = photoIdsInCart.some(photoId => photoId === id)
 
     if (isInList) { // delete from the cart
-      const photosInCardUpdated = photosInCart.filter(photo => photo.id !== id)
-      setPhotosInCart(photosInCardUpdated)
+      const photoIdsInCardUpdated = photoIdsInCart.filter(photoId => photoId !== id)
+      setPhotoIdsInCart(photoIdsInCardUpdated)
       return
     } 
     // add to the cart
-    const photoToAdd = allPhotos.find(photo => photo.id === id)
-    const photosInCardUpdated = photoToAdd !== undefined ? 
-      photosInCart.concat(photoToAdd) : [...photosInCart]
-
-    setPhotosInCart(photosInCardUpdated)
+    const photoIdsInCartUpdated = photoIdsInCart.concat(id)
+    setPhotoIdsInCart(photoIdsInCartUpdated)
   }
 
   return (
-    <Context.Provider value={{allPhotos, toggleFavorite, toggleInCart}}>
+    <Context.Provider value={{allPhotos, photoIdsInCart, toggleFavorite, toggleInCart}}>
         {props.children}
     </Context.Provider>
   )
