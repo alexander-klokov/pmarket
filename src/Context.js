@@ -42,8 +42,19 @@ function ContextProvider (props) {
     setPhotoIdsInCart(photoIdsInCartUpdated)
   }
 
+  const emptyCart = () => setPhotoIdsInCart([])
+  
+
+  const contextToProvide = {
+    allPhotos, 
+    photoIdsInCart, 
+    toggleFavorite, 
+    toggleInCart, 
+    emptyCart
+  }
+
   return (
-    <Context.Provider value={{allPhotos, photoIdsInCart, toggleFavorite, toggleInCart}}>
+    <Context.Provider value={contextToProvide}>
         {props.children}
     </Context.Provider>
   )
