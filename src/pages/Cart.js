@@ -31,16 +31,19 @@ export const Cart = () => {
         }, 2000)
     }
 
+    // order button
     const buttonCaption = orderPlacing ? "Ordering..." : "Place Order"
+    const maybeOrderButton = photoIdsInCart.length ?
+      (<div className="order-button">
+         <button onClick={()=>onPlaceOrder()}>{buttonCaption}</button>
+       </div>) : <p>You have no items in your cart</p>
 
     return (
         <main className="cart-page">
             <h1>Check out</h1>
             {cartItemElements}
             <p className="total-cost">Total: {totalCost}</p>
-            <div className="order-button">
-                <button onClick={()=>onPlaceOrder()}>{buttonCaption}</button>
-            </div>
+            {maybeOrderButton}
         </main>
     )
 }
