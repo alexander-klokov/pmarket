@@ -1,5 +1,6 @@
 import React from 'react'
-import {useState, useContext} from 'react'
+import {useContext} from 'react'
+import {useHover} from '../hooks/useHover'
 
 import PropTypes from 'prop-types'
 
@@ -7,7 +8,7 @@ import {Context} from "../Context"
 
 export const Image = ({className, img}) => {
 
-  const [isHovered, setIsHovered] = useState(false)
+  const [isHovered, ref] = useHover()
 
   const {toggleFavorite, toggleInCart, photoIdsInCart} = useContext(Context)
 
@@ -31,9 +32,7 @@ export const Image = ({className, img}) => {
   }
 
   return (
-  <div className={`${className} image-container`}
-    onMouseEnter={() => setIsHovered(true)}
-    onMouseLeave={() => setIsHovered(false)}>
+  <div className={`${className} image-container`} ref={ref}>
 
     <img src={img.url} className="image-grid" alt=""/>
 

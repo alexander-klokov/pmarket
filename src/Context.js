@@ -1,7 +1,7 @@
 import React from "react"
 import {useState, useEffect} from "react"
 
-const URL_Photos =
+const URL_PHOTOS =
   "https://raw.githubusercontent.com/bobziroll/scrimba-react-bootcamp-images/master/images.json"
 
 
@@ -13,7 +13,7 @@ function ContextProvider (props) {
 
  
   useEffect(() => {
-      fetch(URL_Photos)
+      fetch(URL_PHOTOS)
         .then(res => res.json())
         .then(data => setAllPhotos(data))
   }, [])
